@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="greetingFactory" class="com.greeting.service.GreetingFactory"/>
+
+    <bean id="marathiGreetingService" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="marathi"/>
+    </bean>
+
+    <bean id="hindiGreetingService" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="hindi"/>
+    </bean>
+	
+	<bean id="frenchGreetingService" factory-bean="greetingFactory" factory-method="createGreetingService">
+        <constructor-arg value="french"/>
+    </bean>
+
+	<beans profile="english">
+		<!--  <import resource="classpath*:spring/english-greeting.xml"/>	 -->
+        <import resource="/english-greeting.xml"/>
+    </beans>
+
+    <beans profile="spanish">
+    	<!--  <import resource="classpath*:spring/spanish-greeting.xml"/>	 -->
+        <import resource="/spanish-greeting.xml"/>
+    </beans>
+</beans>
